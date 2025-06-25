@@ -1,8 +1,12 @@
 import "./style.css"
 import addForm from "./addForm.js"
 import { createProject, projects, Task } from "./logic.js"
-import { addProject } from "./addProject.js"
+import { addProjectForm } from "./addProjectForm.js"
+import { loadProjects } from "./loadProjects.js"
 
+
+
+loadProjects()
 
 const addTaskButton = document.querySelector(".add-task-button")
 
@@ -26,10 +30,10 @@ addTaskButton.addEventListener("click", () => {
 })
 
 addProjectButton.addEventListener("click", () => {
-    addProject()
+    addProjectForm()
     let form = document.querySelector("form")
     form.addEventListener("submit", function (event) {
-        event.preventDefault()
         createProject(form.elements["title"].value)
+        loadProjects()
     })
 })

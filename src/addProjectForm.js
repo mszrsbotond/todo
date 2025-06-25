@@ -1,6 +1,6 @@
 const screen = document.querySelector(".main-screen")
 
-export function addProject(){
+export function addProjectForm(){
         screen.innerHTML = ``
 
     const form = document.createElement("form");

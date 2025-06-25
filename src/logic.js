@@ -1,4 +1,4 @@
-export const projects = []
+export var projects;
 
 export class Project {
     constructor(name){
@@ -14,10 +14,17 @@ export class Project {
 export function createProject(name){
     const project = new Project(name)
     projects.push(project)
-    return project 
+    localStorage.setItem("projects", JSON.stringify(projects))
+    console.log(JSON.parse(localStorage.getItem("projects")))
 }
 
-createProject("To Do")
+if (JSON.parse(localStorage.getItem("projects")) == null) {
+    projects = []
+    createProject("To Do")
+}
+else {
+    projects = JSON.parse(localStorage.getItem("projects"))
+}
 
 export class Task {
     constructor(title, description, dueDate, priority, status, project) {
