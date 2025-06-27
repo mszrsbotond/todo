@@ -1,9 +1,10 @@
+import { completeTask, projects } from "./logic"
+
+
 const projectsDiv = document.querySelector(".projects")
 const mainScreen = document.querySelector(".main-screen")
 
-const storedProjects = JSON.parse(localStorage.getItem("projects"))
-
-function loadProjectsAndTasksToMain(project){
+function loadProjectsAndTasksToMain(project) {
     mainScreen.innerHTML = ""
 
     let projectTitle = document.createElement("h1")
@@ -16,16 +17,22 @@ function loadProjectsAndTasksToMain(project){
 
         let taskTitle = document.createElement("h1")
         taskTitle.textContent = task.title
-
         taskDiv.appendChild(taskTitle)
+
+        let compTask = document.createElement("button")
+        compTask.textContent = "COMPLETE"
+        taskDiv.appendChild(compTask)
+        compTask.addEventListener("click", () => {
+            completeTask(task)
+        })
 
         mainScreen.appendChild(taskDiv)
     })
 
 }
 
-export function loadProjects(){
-    storedProjects.forEach(project => {
+export function loadProjects() {
+    projects.forEach(project => {
         let projectTab = document.createElement("button")
         projectTab.textContent = project.name
 
@@ -34,5 +41,5 @@ export function loadProjects(){
         projectTab.addEventListener("click", () => {
             loadProjectsAndTasksToMain(project)
         })
-        })
+    })
 }

@@ -1,5 +1,13 @@
 export var projects;
 
+export function saveToStorage() {
+    localStorage.setItem("projects", JSON.stringify(projects))
+}
+
+export function loadFromStorage(){
+    projects = JSON.parse(localStorage.getItem("projects"))
+}
+
 export class Project {
     constructor(name) {
         this.name = name
@@ -10,7 +18,7 @@ export class Project {
 export function createProject(name) {
     const project = new Project(name)
     projects.push(project)
-    localStorage.setItem("projects", JSON.stringify(projects))
+    saveToStorage()
 }
 
 if (JSON.parse(localStorage.getItem("projects")) == null) {
@@ -18,7 +26,7 @@ if (JSON.parse(localStorage.getItem("projects")) == null) {
     createProject("To Do")
 }
 else {
-    projects = JSON.parse(localStorage.getItem("projects"))
+    loadFromStorage()
 }
 
 export class Task {
@@ -35,8 +43,29 @@ export class Task {
         projects.forEach(project => {
             if (project.name == this.project) {
                 project.tasks.push(this)
-                localStorage.setItem("projects", JSON.stringify(projects))
+                saveToStorage()
             }
         })
     }
+
+
+}
+
+export function completeTask(task) {
+    projects.forEach(project => {
+        if (project.name === task.project) {
+            const index = project.tasks.findIndex(t =>
+                t.title === task.title &&
+                t.description === task.description &&
+                t.dueDate === task.dueDate &&
+                t.priority === task.priority &&
+                t.status === task.status &&
+                t.project === task.project)
+            if (index > -1) {
+                project.tasks.splice(index, 1)
+                saveToStorage()
+                loadFromStorage()
+            }
+        }
+    })
 }

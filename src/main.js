@@ -4,7 +4,6 @@ import { createProject, projects, Task } from "./logic.js"
 import { addProjectForm } from "./addProjectForm.js"
 import { loadProjects } from "./loadProjects.js"
 
-
 loadProjects()
 
 const addTaskButton = document.querySelector(".add-task-button")
