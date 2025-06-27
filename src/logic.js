@@ -1,21 +1,16 @@
 export var projects;
 
 export class Project {
-    constructor(name){
+    constructor(name) {
         this.name = name
         this.tasks = []
     }
-
-    addTask(task) {
-        this.tasks.push(task)    
-    }
 }
 
-export function createProject(name){
+export function createProject(name) {
     const project = new Project(name)
     projects.push(project)
     localStorage.setItem("projects", JSON.stringify(projects))
-    console.log(JSON.parse(localStorage.getItem("projects")))
 }
 
 if (JSON.parse(localStorage.getItem("projects")) == null) {
@@ -36,10 +31,11 @@ export class Task {
         this.project = project
     }
 
-    addToProject(){
+    addToProject() {
         projects.forEach(project => {
-            if(project.name == this.project){
-                project.addTask(this)
+            if (project.name == this.project) {
+                project.tasks.push(this)
+                localStorage.setItem("projects", JSON.stringify(projects))
             }
         })
     }

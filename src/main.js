@@ -16,7 +16,6 @@ addTaskButton.addEventListener("click", () => {
     addForm()
     let form = document.querySelector("form")
     form.addEventListener("submit", function (event) {
-        event.preventDefault()
         let title = form.elements["title"].value
         let desc = form.elements["description"].value
         let due = form.elements["dueDate"].value

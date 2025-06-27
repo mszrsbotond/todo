@@ -8,13 +8,19 @@ function loadProjectsAndTasksToMain(project){
 
     let projectTitle = document.createElement("h1")
     projectTitle.textContent = project.name
+    mainScreen.appendChild(projectTitle)
 
     project.tasks.forEach(task => {
-        let taskElement = document.createElement("p")
-        taskElement.textContent = task.name
+        let taskDiv = document.createElement("div")
+
+        let taskTitle = document.createElement("h1")
+        taskTitle.textContent = task.title
+
+        taskDiv.appendChild(taskTitle)
+
+        mainScreen.appendChild(taskDiv)
     })
 
-    mainScreen.appendChild(projectTitle)
 }
 
 export function loadProjects(){
