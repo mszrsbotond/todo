@@ -7,14 +7,12 @@ const mainScreen = document.querySelector(".main-screen")
 function loadTasks(project) {
     let taskContainer = document.querySelector(".taskContainer");
 
-    // 2. If it doesn't exist, create and append it
     if (!taskContainer) {
         taskContainer = document.createElement("div");
         taskContainer.classList.add("taskContainer");
         mainScreen.appendChild(taskContainer);
     }
 
-    // 3. Clear old tasks before adding new ones
     taskContainer.innerHTML = "";
 
 
@@ -26,8 +24,17 @@ function loadTasks(project) {
         taskTitle.textContent = task.title
         taskDiv.appendChild(taskTitle)
 
+        let taskDue = document.createElement("h1")
+        taskDue.textContent = task.dueDate
+        taskDiv.appendChild(taskDue)
+
+        let taskPrior = document.createElement("h1")
+        taskPrior.textContent = `${task.priority} priority`
+        taskDiv.appendChild(taskPrior)
+
+
         let compTask = document.createElement("button")
-        compTask.textContent = "COMPLETE"
+        compTask.classList.add("compTask")
         taskDiv.appendChild(compTask)
         compTask.addEventListener("click", () => {
             completeTask(task)
@@ -37,6 +44,12 @@ function loadTasks(project) {
                     loadTasks(updatedProject)
                 }
             })
+        })
+        compTask.addEventListener("mouseover", () => {
+            compTask.textContent = "✔️"
+        })
+        compTask.addEventListener("mouseleave", () => {
+            compTask.textContent = ""
         })
 
         taskContainer.appendChild(taskDiv)
