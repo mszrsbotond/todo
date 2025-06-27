@@ -64,7 +64,6 @@ export function completeTask(task) {
             if (index > -1) {
                 project.tasks.splice(index, 1)
                 saveToStorage()
-                loadFromStorage()
             }
         }
     })
