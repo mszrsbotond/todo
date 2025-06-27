@@ -12,6 +12,7 @@ function loadProjectsAndTasksToMain(project){
 
     project.tasks.forEach(task => {
         let taskDiv = document.createElement("div")
+        taskDiv.classList.add("taskDiv")
 
         let taskTitle = document.createElement("h1")
         taskTitle.textContent = task.title

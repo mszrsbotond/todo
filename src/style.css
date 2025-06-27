@@ -109,3 +109,12 @@ form > div > input, select{
     font-weight: bolder;
     padding: 5px 5px
 }
+
+.taskDiv{
+    background-color: #081F28;
+    width: 80%;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+
+}

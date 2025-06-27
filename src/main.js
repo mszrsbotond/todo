@@ -5,7 +5,6 @@ import { addProjectForm } from "./addProjectForm.js"
 import { loadProjects } from "./loadProjects.js"
 
 
-
 loadProjects()
 
 const addTaskButton = document.querySelector(".add-task-button")
